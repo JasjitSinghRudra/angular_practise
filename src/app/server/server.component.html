@@ -1,0 +1,28 @@
+<h3>Server Component</h3>
+<label>Server Name</label>
+
+<!-- <input type="text" class="form-control" (input)="onUpdateServer($event)">  THIS IS EVENT BINDING -->  
+
+<input type="text" 
+class="form-control" 
+[(ngModel)]="serverId"> 
+<!-- THIS IS TWO WAY BINDING -->
+
+<!-- <p>Server with id {{ serverId }} has status {{ getServerStatus() }}</p> -->
+
+<button class="btn btn-primary" [disabled]="!allowServer" (click)="onCreateServer()">Add Server</button>
+
+<br><br>
+
+<div *ngFor="let server of servers; let i = index">
+<p *ngIf="serverCreated; 
+else noServer" 
+[ngStyle]="{color: getColor()}"
+[ngClass]="{created: serverCreated === true}" >
+{{ serverCreationStatus }}
+</p>
+</div>
+<ng-template #noServer > 
+    <p [ngStyle]="{color: getColor()}" >{{ serverCreationStatus }}</p>   <!-- THIS IS STRING INTERPOLATION -->
+</ng-template>
+
